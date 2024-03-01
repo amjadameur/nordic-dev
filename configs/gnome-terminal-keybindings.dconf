@@ -1,0 +1,11 @@
+[/]
+detach-tab='disabled'
+find='<Primary>f'
+move-tab-left='disabled'
+move-tab-right='disabled'
+new-tab='<Primary>t'
+next-tab='<Primary><Shift>Right'
+prev-tab='<Primary><Shift>Left'
+zoom-in='<Primary>equal'
+zoom-normal='<Primary>0'
+zoom-out='<Primary>minus'

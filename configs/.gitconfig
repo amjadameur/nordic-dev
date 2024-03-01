@@ -1,0 +1,101 @@
+[core]
+    editor = vim
+    pager  = cat
+    autocrlf = input
+    abbrev = 12
+[pretty]
+    fixes = Fixes: %h (\"%s\")
+#[user]
+#    name =
+#    email =
+[color]
+	diff        = auto
+        status      = auto
+        branch      = auto
+        interactive = auto
+        ui          = true
+[color "diff"]
+        meta = yellow #bold
+        frag = magenta #bold
+        old  = red bold
+        new  = green bold
+[color "status"]
+        added     = green
+        changed   = yellow
+        removed   = red
+        untracked = white
+[color "branch"]
+        current = yellow reverse
+        local   = yellow
+        remote  = green
+[status]
+        relativepaths = true
+[merge]
+	tool = meld
+[alias]
+	root = git rev-parse --show-toplevel
+	firsttag = describe --contains
+	psha1  = show --pretty=reference --no-patch
+	rh     = reset --hard
+	rhh    = reset --hard HEAD
+	ba     = branch -a
+	rv     = remote -v
+	au     = add -u
+	ca     = commit --amend
+	can    = commit --amend --no-edit
+	cs     = commit -s
+	st     = status --branch
+	stu    = status --untracked-files=no --short --branch
+	ol     = log --pretty=oneline --abbrev-commit --reverse --decorate
+	gol    = log --pretty=oneline --abbrev-commit --graph --decorate
+	gola   = log --pretty=oneline --abbrev-commit --graph --decorate --all
+	ci     = commit --cleanup=default
+	cis    = commit -s --cleanup=default
+	co     = checkout
+	w      = whatchanged
+	br     = branch
+	brv    = branch -a --verbose --abbrev
+	bra    = branch -a
+	staged = diff --cached
+	ndiff  = diff --name-only
+	chp    = cherry-pick
+	fp     = format-patch
+	amr    = am --reject --whitespace=fix
+	padd   = add --patch
+	autorbi = rebase -i --autosquash --autostash
+	fixes   = log --pretty=fixes -n1
+	fap = fetch --all --prune
+	mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
+	aa = !sh -c 'git au && git can'
+[diff]
+        tool = meld
+[push]
+        default = upstream
+[merge]
+        renameLimit = 999999
+	conflictstyle = diff3
+[sendemail]
+        smtpuser = email
+        smtpserver = smtp.googlemail.com
+        smtpencryption = tls
+        smtpserverport = 587
+    smtpPass = <PASS>
+[credential]
+    helper = store --file ~/.git-credentials
+[grep]
+    lineNumber = true
+[pretty]
+fixes = Fixes: %h (\"%s\")
+[b4]
+    send-hide-cover-to-cc = yes
+#[sendemail]
+#    from = "Name <email>"
+#[sendemail]
+#       smtpuser =
+#       smtpserver = smtp.googlemail.com
+#       smtpencryption = tls
+#       smtpserverport = 587
+[http]
+    cookiefile = /home/amjad/.gitcookies
+[protocol]
+    version = 2
