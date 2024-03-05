@@ -66,7 +66,8 @@
 	fixes   = log --pretty=fixes -n1
 	fap = fetch --all --prune
 	mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
-	aa = !sh -c 'git au && git can'
+	getfile = !sh -c 'git show $1:$2 > $3' -
+	ac = !sh -c 'git au && git can'
 [diff]
         tool = meld
 [push]

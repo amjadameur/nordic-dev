@@ -52,3 +52,6 @@ set showcmd
 
 set splitbelow
 set splitright
+
+highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+match ExtraWhitespace /\s\+$/

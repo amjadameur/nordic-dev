@@ -6,21 +6,24 @@ function csbuild() {
 	find $PROJDIR -name "*.c" -o -name "*.h" > $PROJDIR/cscope.files
 	popd -q
 
-	if [ ! -s $PROJDIR/cscope.files ]; then
+	if [[ ! -s $PROJDIR/cscope.files ]]; then
+		rm $PROJDIR/cscope.files
 		return
 	fi
 
-	cscope -Rbk 1>/dev/null
+	cscope -Rbk 1>/dev/null 2>/dev/null
+	rm $PROJDIR/cscope.files
 
 	echo "CSCOPE_DB=$PROJDIR/cscope.out" > $DIRBASE.cscope
 	echo "export CSCOPE_DB" >> $DIRBASE.cscope
 
 	source $DIRBASE.cscope
+
 }
 
 function csbuild_git() {
-	GIT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
-	CUR_DIR=$PWD
+	local GIT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null)
+	local CUR_DIR=$PWD
 
 	if [[ ! -z "$GIT_ROOT" ]]; then
 		cd ${GIT_ROOT}
@@ -30,10 +33,17 @@ function csbuild_git() {
 }
 
 function vim() {
-	if git ls-files --error-unmatch "$@" 1>/dev/null 2>/dev/null; then
+	local CUR_DIR=`pwd`
+	local VIM_FNAME=`basename $1`
+	local VIM_FDIR=`dirname $1`
+
+	cd ${VIM_FDIR}
+
+	if git ls-files --error-unmatch "${VIM_FNAME}" 1>/dev/null 2>/dev/null; then
 		csbuild_git
 	fi
 
+	cd ${CUR_DIR}
 	command vim "$@"
 }
 
@@ -75,4 +85,7 @@ rg-fn() {
 PATH=$PATH:$HOME/.vim/plugin:$HOME/.local/bin
 
 alias rg="rg --type-add 'dt:*.{dts,dtsi,dtb}' --type-add 'Kconfig:*Kconfig' --type-add 'rc:*.{rc}'"
-alias tmuxkill="tmux kill-session -t"
+alias tmuxk="tmux kill-session -t"
+alias tmuxa="tmux attach -d -t"
+alias tmuxn="tmux new -s"
+alias tmuxl="tmux ls"
