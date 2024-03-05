@@ -1,9 +1,9 @@
 # Install
 
 ```
-$ git clone https://github.com/amjadameur/nordic-dev.git
-$ cd nordic-dev
-$ ./setup
+git clone https://github.com/amjadameur/nordic-dev.git
+cd nordic-dev
+./setup.sh
 ```
 
 ## Custom packages
