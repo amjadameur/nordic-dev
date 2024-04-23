@@ -36,6 +36,7 @@
 	root = git rev-parse --show-toplevel
 	firsttag = describe --contains
 	psha1  = show --pretty=reference --no-patch
+        sn     = show --name-only
 	rh     = reset --hard
 	rhh    = reset --hard HEAD
 	ba     = branch -a
