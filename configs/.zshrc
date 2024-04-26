@@ -64,7 +64,9 @@ plugins=(
   zsh-autosuggestions
 )
 
+
 source $ZSH/oh-my-zsh.sh
+unsetopt share_history
 
 # User configuration
 
